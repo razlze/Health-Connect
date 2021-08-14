@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <!-- Title -->
+  <title>
+    Display Table
+  </title>
+
+  <!-- JavaScript -->
+  <script type="text/javascript" src="/scripts/app.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-md bg-dark"> 
+    <div class="container">
+
+      <!-- Website name -->
+      <a class="navbar-header navbar-brand" href="http://localhost:5000">
+        <img src="{{ url_for('static', filename='images/logo_white.png') }}" alt="logo" style="width:40px;">
+        Health Connect
+      </a>
+
+      <!-- Button toggler -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Right elements -->
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="nav navbar-nav ml-auto">
+          <li class="nav-item"><a class="nav-link" href="http://localhost:5000/#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="http://localhost:5000/#team">Our Team</a></li>
+          <li class="nav-item"><a class="nav-link active" href="http://localhost:5000/application">Try It Out!</a></li>
+        </ul> 
+      </div>
+
+    </div>
+  </nav>
+  <!-- End Navigation -->
+
+  <div class="container" style='height: 90%; display: flex; justify-content: center; align-items: center; '>
+    <div class="row">
+
+      <div class="col-sm-4 form-div" >
+       
+        <h1 style="text-align: left">Welcome</h1>
+        <i>
+          <h4 style="text-align: left">We're here to help!</h4>
+        </i>
+        <form method="GET">
+          <br><br>
+          <label for="sel1">Province</label>
+          <select class="form-control" id="sel1" name="provinceSelect">
+            <option value="Select Option" selected disabled>Select Option</option>
+            <option value="ab">Alberta</option>
+            <option value="bc">British Columbia</option>
+            <option value="mb">Manitoba</option>
+            <option value="nb">New Brunswick</option>
+            <option value="nl">Newfoundland & Labrador</option>
+            <option value="nt">North West Territories</option>
+            <option value="ns">Nova Scotia</option>
+            <option value="nu">Nunavut</option>
+            <option value="on">Ontario</option>
+            <option value="pe">Prince Edward Island</option>
+            <option value="qu">Quebec</option>
+            <option value="sk">Saskatchewan</option>
+            <option value="yt">Yukon Territories</option>
+          </select>
+          <br>
+          <label for="sel2">Facility Type</label>
+          <select class="form-control" id="sel2" name="typeSelect">
+            <option value="Select Option" selected disabled>Select Option</option>
+            <option value="ambulatory">Ambulatory health care services (including clinics)</option>
+            <option value="hospitals">Hospitals</option>
+            <option value="nursing">Nursing and residential care facilities</option>
+          </select>
+          <br>
+          <label for="inputMax">Max Wait Time (Hours)</label>
+          <input type="number" class="form-control" id="inputMax" min="1" max="24" name="waitTime">
+          <br><br>
+          <button type="submit" class="btn btn-outline-success">Filter</button>
+        </form>
+        
+      </div>
+
+      <div class="col-sm-8" id="mainContainer">
+
+        <table class="table table-hover">
+          <tbody>
+            <tr>
+              {% for col in column_names %}
+              <th scope="col">{{col}}</th>
+              {% endfor %}
+            </tr>
+            {% for facility_type, facility_name, location, longitude, latitude,wait_time, total_time in row_data %}
+
+            <tr>
+              <!-- Icon -->
+              <td>
+                {% if facility_type|string() == 'Ambulatory health care services' %}
+                <img data-toggle="tooltip" title="Ambulatory health care services" src="{{ url_for('static', filename='images/ambulance.png') }}" width="60px" id="">
+                </img>
+                {% elif facility_type|string() == 'Nursing and residential care facilities' %}
+                <img data-toggle="tooltip" title="Nursing and residential care facilities" src="{{ url_for('static', filename='images/nursing.png') }}" width="60px"> </img>
+                {% else %}
+                <img data-toggle="tooltip" title="Hospital" src="{{ url_for('static', filename='images/hospital.png') }}" width="60px"></img>
+                {% endif %}
+              </td>
+              <!-- Facility Name -->
+              <td>
+                {{ facility_name }}
+              </td>
+              <!-- Location -->
+
+              <td>
+                <a href="{{'https://maps.google.com/?ll=' +  longitude|string()  + ',' + latitude|string() }}">{{ location }}</a>
+              </td>
+
+              <!-- Wait Time -->
+              {% if not wait_time > 60 %}
+              <td>
+                {{ wait_time }} Minutes
+              </td>
+              {% else %}
+              <td>
+                {{ (wait_time//60)|int }} Hours and {{ (wait_time-((wait_time//60)*60))|round|int }} Minutes
+              </td>
+              {% endif %}
+              <!-- Total Time -->
+              {% if not total_time > 60 %}
+              <td>
+                {{ total_time }} Minutes
+              </td>
+              {% else %}
+              <td>
+                {{ total_time//60 }} Hours and {{ (total_time-((total_time//60)*60))|round|int }} Minutes
+              </td>
+              {% endif %}
+
+            </tr>
+
+            {% endfor %}
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
+
+<script>
+  $(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+  });
+  </script>

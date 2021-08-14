@@ -1,0 +1,5 @@
+index,facility_type,facility_name,province,longitude,latitude
+0,Ambulatory health care services,mont,Ontario, 45.4112, -75.6981
+1,Nursing and residential care facilities,tail,Quebec,45.4112, -75.6981
+2,Nursing and residential care facilities,long,Alberta,45.4112, -75.6981
+3,Hospitals,hail,Ontario,45.4112, -75.6981
