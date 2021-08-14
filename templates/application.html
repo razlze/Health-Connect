@@ -95,84 +95,88 @@
           No Results Fit Your Criteria
         </div>
         {% endif %}
+        <div class="table-overflow">
+          <table class="table table-hover tablestrat">
 
-        <table class="table table-hover">
-          <tbody>
-            <tr>
-              {% for col in column_names %}
-              <th scope="col">{{col}}</th>
-              {% endfor %}
-            </tr>
-            {% for facility_type, facility_name, location, longitude, latitude, wait_time, drive_time, total_time in row_data %}
+            <thead class="theadstick">
+              <tr>
+                {% for col in column_names %}
+                <th scope="col">{{col}}</th>
+                {% endfor %}
+              </tr>
+            </thead>
 
-            <tr>
-              <!-- Icon -->
-              <td>
-                {% if facility_type|string() == 'Ambulatory health care services' %}
-                <img data-toggle="tooltip" title="Ambulatory health care services"
-                  src="{{ url_for('static', filename='images/ambulance.png') }}" width="60px" id="">
-                </img>
-                {% elif facility_type|string() == 'Nursing and residential care facilities' %}
-                <img data-toggle="tooltip" title="Nursing and residential care facilities"
-                  src="{{ url_for('static', filename='images/nursing.png') }}" width="60px"> </img>
+            <tbody>
+              
+              {% for facility_name, facility_type, location, longitude, latitude, wait_time, drive_time, total_time in row_data %}
+
+              <tr>
+                <!-- Icon -->
+                <td>
+                  {% if facility_type|string() == 'Ambulatory health care services' %}
+                  <img data-toggle="tooltip" title="Ambulatory health care services"
+                    src="{{ url_for('static', filename='images/ambulance.png') }}" width="60px" id="">
+                  </img>
+                  {% elif facility_type|string() == 'Nursing and residential care facilities' %}
+                  <img data-toggle="tooltip" title="Nursing and residential care facilities"
+                    src="{{ url_for('static', filename='images/nursing.png') }}" width="60px"> </img>
+                  {% else %}
+                  <img data-toggle="tooltip" title="Hospital"
+                    src="{{ url_for('static', filename='images/hospital.png') }}" width="60px"></img>
+                  {% endif %}
+                </td>
+                <!-- Facility Name -->
+                <td>
+                  {{ facility_name }}
+                </td>
+                <!-- Location -->
+
+                <td>
+                  <a href="{{'https://maps.google.com/?ll=' +  longitude|string()  + ',' + latitude|string() }}" target="_blank">{{ location }}</a>
+                </td>
+
+                <!-- Wait Time -->
+                {% if not wait_time > 60 %} 
+                <td>
+                  {{ wait_time }} Minutes
+                </td>
+              
                 {% else %}
-                <img data-toggle="tooltip" title="Hospital"
-                  src="{{ url_for('static', filename='images/hospital.png') }}" width="60px"></img>
+                <td>
+                  {{ (wait_time//60)|int }} Hours and {{ (wait_time-((wait_time//60)*60))|round|int }} Minutes
+                </td>
                 {% endif %}
-              </td>
-              <!-- Facility Name -->
-              <td>
-                {{ facility_name }}
-              </td>
-              <!-- Location -->
 
-              <td>
-                <a href="{{'https://maps.google.com/?ll=' +  longitude|string()  + ',' + latitude|string() }}">{{
-                  location }}</a>
-              </td>
+                <!-- Drive Time -->
+                {% if not drive_time > 60 %}
+                <td>
+                  {{ drive_time }} Minutes
+                </td>
+                
+                {% else %}
+                <td>
+                  {{ (drive_time//60)|int }} Hours and {{ (drive_time-((drive_time//60)*60))|round|int }} Minutes
+                </td>
+                {% endif %}
 
-              <!-- Wait Time -->
-              {% if not wait_time > 60 %} 
-              <td>
-                {{ wait_time }} Minutes
-              </td>
-            
-              {% else %}
-              <td>
-                {{ (wait_time//60)|int }} Hours and {{ (wait_time-((wait_time//60)*60))|round|int }} Minutes
-              </td>
-              {% endif %}
+                <!-- Total Time -->
+                {% if not total_time > 60 %}
+                <td>
+                  {{ total_time }} Minutes
+                </td>
+                
+                {% else %}
+                <td>
+                  {{ (total_time//60)|int }} Hours and {{ (total_time-((total_time//60)*60))|round|int }} Minutes
+                </td>
+                {% endif %}
 
-              <!-- Drive Time -->
-              {% if not drive_time > 60 %}
-              <td>
-                {{ drive_time }} Minutes
-              </td>
-              
-              {% else %}
-              <td>
-                {{ (drive_time//60)|int }} Hours and {{ (drive_time-((drive_time//60)*60))|round|int }} Minutes
-              </td>
-              {% endif %}
+              </tr>
 
-              <!-- Total Time -->
-              {% if not total_time > 60 %}
-              <td>
-                {{ total_time }} Minutes
-              </td>
-              
-              {% else %}
-              <td>
-                {{ (total_time//60)|int }} Hours and {{ (total_time-((total_time//60)*60))|round|int }} Minutes
-              </td>
-              {% endif %}
-
-            </tr>
-
-            {% endfor %}
-          </tbody>
-        </table>
-
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
 
 
       </div>

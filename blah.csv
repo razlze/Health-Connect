@@ -1,9 +1,9 @@
 index,facility_type,facility_name,province,longitude,latitude
-0,Ambulatory health care services,Ottawa,on,45.4112,-75.6981
-1,Nursing and residential care facilities,Montreal,qu,45.4112,-75.6981
-2,Nursing and residential care facilities,Edmonton,ab,45.4112,-75.6981
-3,Hospitals,Hamilton,on,45.4112,-85.6981
+0,Ambulatory health care services,Ottawa,on, 45.393539, -75.721304
+1,Nursing and residential care facilities,Montreal,qu,45.496706, -73.629347
+2,Nursing and residential care facilities,Edmonton,ab,53.558376, -89.496111
+3,Hospitals,Hamilton,on
 4,Hospitals,London,on,49.4112,-90
 5,Hospitals,mont,on,50.4112,-40
 6,Nursing and residential care facilities,Toronto,on,43.659389, -79.387576
-7,Hospitals,London,on,43.000661, -81.255968
+7,Hospitals,London,on
