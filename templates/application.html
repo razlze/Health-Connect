@@ -9,8 +9,9 @@
   </title>
 
   <!-- JavaScript -->
-  <script type="text/javascript" src="/scripts/app.js"></script>
 
+  <!-- jquery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <!-- CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
@@ -91,11 +92,10 @@
           <button type="submit" class="btn btn-outline-success">Filter</button>
         </form> -->
         {% block content %}{% endblock %}
-        
+
       </div>
 
       <div class="col-sm-8" id="mainContainer">
-
         {% if hasData %}
         <table class="table table-hover">
           <tbody>
@@ -104,7 +104,7 @@
               <th scope="col">{{col}}</th>
               {% endfor %}
             </tr>
-            {% for facility_type, facility_name, location, longitude, latitude,wait_time, total_time in row_data %}
+            {% for facility_type, facility_name, location, longitude, latitude, wait_time, total_time in row_data %}
 
             <tr>
               <!-- Icon -->
@@ -155,6 +155,10 @@
           </tbody>
         </table>
         {% else %}
+
+        <p>
+          ur too strict man
+        </p>
         
         {% endif %}
 

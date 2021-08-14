@@ -7,7 +7,6 @@
 html, body {
   font-family:'Poppins', sans-serif;
   scroll-behavior: smooth;
-  box-sizing: border-box;
   height: 100%;
   /* overflow-x: hidden; */
 }
@@ -27,28 +26,25 @@ section {
   height: 40px;  
   border-radius: 40px;
   color: black;
-  display: inline-flex;
   align-items: center;
   justify-content: center;
   transition: 0.4s;
-  text-decoration: none;
 }
 
 .scroll-down-button i {
-  font-size: 30px;
-  background-color:rgba(255, 255, 255, 0);
-  text-decoration: none;
+  position: absolute;
+  font-size: 25px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .scroll-down-button:hover {
-  background-color: #17B890;
+  background-color: rgb(47, 50, 56);
   color: white;
-  text-decoration: none;
 }
 
 .scroll-down-button:hover i {
-  background-color:rgba(255, 255, 255, 0);
-  text-decoration: none;
 }
 
 /* Button */
@@ -205,42 +201,41 @@ h3 {
 }
 .cube {
   position: absolute;
-  top: 80vh;
-  left: 45vw;
+  left: 30vw;
   width: 10px;
   height: 10px;
   border: solid 1px #17B890;
+  border-radius: 1px;
   transform-origin: top left;
   transform: scale(0) rotate(0deg) translate(-50%, -50%);
   animation: cube 12s ease-in forwards infinite;
 }
-.cube:nth-child(2n) {
+/* .cube:nth-child(2n) {
   border-color: #fff ;
-}
+} */
 .cube:nth-child(2) {
   animation-delay: 2s;
-  left: 25vw;
-  top: 40vh;
+  left: 22vw;
+ 
 }
 .cube:nth-child(3) {
   animation-delay: 4s;
   left: 75vw;
-  top: 50vh;
+ 
 }
 .cube:nth-child(4) {
   animation-delay: 6s;
   left: 90vw;
-  top: 10vh;
+  
 }
 .cube:nth-child(5) {
   animation-delay: 8s;
-  left: 10vw;
-  top: 85vh;
+  left: 7vw;
+  
 }
 .cube:nth-child(6) {
   animation-delay: 10s;
-  left: 50vw;
-  top: 10vh;
+  left: 65vw;
 }
 
 @keyframes Gradient {
@@ -257,11 +252,13 @@ h3 {
 @keyframes cube {
   from {
     transform: scale(0) rotate(0deg) translate(-50%, -50%);
-    opacity: 1;
+    opacity: 0.5;
+    top: 0%;
   }
   to {
     transform: scale(20) rotate(960deg) translate(-50%, -50%);
     opacity: 0;
-    
+    top: 90%;
+    border-radius: 7px;
   }
 }

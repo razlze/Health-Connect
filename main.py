@@ -1,13 +1,15 @@
 from flask import Flask, render_template, url_for, flash, redirect, request
 import numpy as np
+import os
 import pandas as pd
 import geocoder
 from geopy import distance
 import random 
 from forms import PreferencesForm
 
+SECRET_KEY = os.urandom(32)
+
 app = Flask(__name__)
-SECRET_KEY = OS.GETENV('SECRET_KEY')
 app.config['SECRET_KEY'] = SECRET_KEY
 
 def total_time(row):
@@ -23,7 +25,7 @@ def total_time(row):
   return totalTime
 
 def wait_time(row):
-  return int(random.randint(1,8))
+  return int(random.randint(60,600))
 
 @app.route('/') 
 @app.route('/main')
@@ -62,8 +64,8 @@ def application():
   print("filtered HERE\n", filtered) 
 
   print("filtered.values.toList()", filtered.values.tolist())   
-
-  return render_template("application.html", column_names=["Facility Type", "Facility Name", "Postal Code", "Wait Time", "Total Time"], row_data=list(filtered.values.tolist()))
+  print("Check")
+  return render_template("application.html", hasData=True, column_names=["Facility Type", "Facility Name", "Postal Code", "Wait Time", "Total Time"], row_data=list(filtered.values.tolist()))
 
 @app.route("/preferences", methods=['GET', 'POST'])
 def preferences():
@@ -73,7 +75,8 @@ def preferences():
     print("result", result)
     province = result["province"]
     facility = result["facility"]
-    waitTime = result["wait_time"]
+    waitTime = int(result["wait_time"])*60
+    print("Wait time", waitTime)
     print("Province", province)
 
     df = pd.read_csv('blah.csv') 
@@ -91,21 +94,23 @@ def preferences():
     # Get rid of null longitudes and latitudes
     filtered = filtered[(filtered['longitude'] != "null")]
     filtered = filtered[(filtered['latitude'] != "null")]
-    filtered = filtered[filtered['wait_time'] <= int(waitTime)] 
+    filtered = filtered[filtered['wait_time'] <= waitTime] 
     # Filling in wait time (not random we promise) 
     print("wait time before", filtered) 
     # Get all hostpitals with wait times lower than the requested one  
     
     
     print("wait time after", filtered)
-    
-    # if len(filtered.columns) == 0:
-    #   print("no data")
-    #   return render_template("application.html")
-    # else: 
-    #   # Filling in total time 
-    #   filtered["total_time"] = filtered.apply(total_time, axis=1)
-    print("we're here")
-    return render_template("application.html", column_names=["Facility Type", "Facility Name", "Postal Code", "Wait Time", "Total Time"], row_data=list(filtered.values.tolist()))
+    print("num", len(filtered))
+    if len(filtered) == 0:
+      print("no data")
+      return render_template("application.html", hasData=False)
+    else: 
+      # Filling in total time 
+      filtered["total_time"] = filtered.apply(total_time, axis=1)
+      print("before deleteing index", filtered)
+      del filtered["index"]
+      print("after deleteing index", filtered)
+      return render_template("application.html", hasData=True, column_names=["Facility Type", "Facility Name", "Postal Code", "Wait Time", "Total Time"], row_data=list(filtered.values.tolist()))
     
   return render_template('preferences.html', title='Preferences', form=form)
