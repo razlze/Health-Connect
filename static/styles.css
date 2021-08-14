@@ -284,3 +284,7 @@ h5 {
     border-radius: 7px;
   }
 }
+
+#mainContainer {
+  padding-left: 40px;
+}

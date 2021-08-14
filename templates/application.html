@@ -51,7 +51,7 @@
   <div class="container" style='height: 90%; display: flex; justify-content: center; align-items: center; '>
     <div class="row">
 
-      <div class="col-sm-4 form-div">
+      <div class="col-sm-3 form-div">
 
         <h1 style="text-align: left">Welcome</h1>
         <i>
@@ -88,7 +88,7 @@
 
       </div>
 
-      <div class="col-sm-8" id="mainContainer">
+      <div class="col-sm-9" id="mainContainer">
 
         {% if hasNoData %}
         <div class="alert alert-danger text-center" role="alert">
@@ -132,7 +132,7 @@
                 <!-- Location -->
 
                 <td>
-                  <a href="{{'https://maps.google.com/?ll=' +  longitude|string()  + ',' + latitude|string() }}" target="_blank">{{ location }}</a>
+                  <a href="{{'https://www.google.com/maps/search/?api=1&query=' +  longitude|string()  + ',' + latitude|string() }}" target="_blank">{{ location }}</a>
                 </td>
 
                 <!-- Wait Time -->
