@@ -97,7 +97,7 @@ def preferences():
     filtered = filtered[filtered['wait_time'] <= waitTime] 
     # Filling in wait time (not random we promise) 
     print("wait time before", filtered) 
-    # Get all hostpitals with wait times lower than the requested one  
+    # Get all hostpitals with wait times lower than the requested one 
     
     
     print("wait time after", filtered)
@@ -111,6 +111,8 @@ def preferences():
       print("before deleteing index", filtered)
       del filtered["index"]
       print("after deleteing index", filtered)
+      filtered.sort_values(by=["total_time"]) 
+
       return render_template("application.html", hasData=True, column_names=["Facility Type", "Facility Name", "Postal Code", "Wait Time", "Total Time"], row_data=list(filtered.values.tolist()))
     
   return render_template('preferences.html', title='Preferences', form=form)
