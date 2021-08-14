@@ -10,6 +10,7 @@
   <!-- CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+  <script src="https://kit.fontawesome.com/aa7a9d0c86.js" crossorigin="anonymous"></script>
 
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
     <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
@@ -38,7 +39,7 @@
         <ul class="nav navbar-nav ml-auto">
           <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
           <li class="nav-item"><a class="nav-link" href="#team">Our Team</a></li>
-          <li class="nav-item"><a class="nav-link" href="http://localhost:5000/application">Try It Out!</a></li>
+          <li class="nav-item"><a class="nav-link" href="http://localhost:5000/preferences">Try It Out!</a></li>
         </ul> 
       </div>
 
@@ -47,7 +48,14 @@
   <!-- End Navigation -->
 
   <!-- Home -->   
-  <section id="home">  
+  <section id="home">
+    <div class="background">
+      <div class="cube"></div>
+      <div class="cube"></div>
+      <div class="cube"></div>
+      <div class="cube"></div>
+     <div class="cube"></div>
+   </div>
     <div class="container">
       <br><br>
       <br><br>
@@ -61,7 +69,7 @@
         </div>
         <div class="col h-100" style="display: table-cell; width: 50%; vertical-align: middle;">
           <h1 class="display-1" style="text-align:left;">
-            Health <br> 
+            Health<br> 
             Connect
           </h1>
         </div>
@@ -69,7 +77,7 @@
 
       <div class="row">
         <div class="col h-100 text-center">
-          <a href="http://localhost:5000/application">
+          <a href="http://localhost:5000/preferences">
             <button class=button>
               Try It Out!
             </button>
@@ -82,11 +90,14 @@
       <br>    
 
       <!-- Scroll down button -->
-      <div class="row">
+      <div class="row" style="position: absolute; bottom: 10%; width: auto; left: 50%; transform: translateX(-50%)">
         <div class="col text-center"> 
           <a href="#about">
-            <!-- <i class="bi bi-arrow-down-circle"></i> -->
-            <img src="./static/images/arrow-down-circle.svg" id="scroll-down-button"> 
+            <div class="scroll-down-button">
+              <i class='fas fa-angle-down '></i>
+            </div>
+            
+            <!-- <img src="./static/images/arrow-down-circle.svg" id="scroll-down-button">  -->
           </a>
         </div>
       </div>
@@ -95,31 +106,28 @@
   </section>
   <!-- End Home -->
 
-  <br><br>
-
   <!-- About -->
-  <section id="about">
+  <section id="about" >
     
-    <br>
 
     <div id=about-bg>
       <div class="container">
 
         <br><br>
 
-        <h1 style="text-align:left;">
+        <h1 style="text-align:left; font-size: 48px;">
           Our mission
         </h1><br>
-        <h3>
+        <h3 style="font-size: 24px;">
           Everyone has had the experience of going to a clinic, or emergency room, only to wait for hours upon hours without resolution. At Health Connect, we understand this frustration and aim to reduce the stress and hesitancy caused by healthcare by providing everyone with an accessible and intuitive platform with information on your nearby hospitals and clinics! 
         </h3>
         
         <br><br><br>
 
-        <h1 style="text-align:left;">
+        <h1 style="text-align:left; font-size: 48px;">
           Why Health Connect?
         </h1><br>
-        <h3>
+        <h3 style="font-size: 24px;">
           Health Connect combines the several services on one platform to provide users with reliable information regarding hospitals and clinics! Our platform generates real-time updates on the wait times of emergency rooms and clinics and calculates the best healthcare location to travel to.
         </h3>
 
@@ -133,10 +141,12 @@
     
     <!-- Scroll down button -->
     <div class="container">
-      <div class="row">
+      <div class="row" style="position: absolute; bottom: 5%; width: auto; left: 50%; transform: translateX(-50%)">
         <div class="col text-center"> 
           <a href="#team">
-            <img src="./static/images/arrowBlack.png" id="scroll-down-button">
+            <div class="scroll-down-button">
+              <i class='fas fa-angle-down '></i>
+            </div>
           </a>
         </div>
       </div>
@@ -145,62 +155,66 @@
     <br>
   </section>
   <!-- End About -->
-  <br><br>
-  <br><br>
-  <br>
+
   
   <!-- Our Team -->
   <section id="team">
+    <div id="teamdiv">
 
-    <br><br>
-
-    <!-- Title -->
-    <div class="row">
-      <div class="col">
-        <h1>Our Team</h1>
-      </div>
-    </div>
     
-    <!-- Line and Extra Spacing -->
-    <hr>
-    <br><br>
+      <!-- Title -->
+      <div class="row" style="margin: 0">
+        <div class="col">
+          <h1 style="font-size: 48px;">Our Team</h1>
+        </div>
+      </div>
+      
+      <!-- Line and Extra Spacing -->
+      <hr>
+      <br><br>
 
-    <!-- Member Cards -->
-    <div class="row" >
-      <div class="col" style="display: inline">
-        <div class="card">
-          <img class="card-img-top" src="./static/images/icon.png" alt="Mufeng Liu">
-          <div class="card-body">
-            <h5 class="card-title">Mufeng Liu</h5>
+      <!-- Member Cards -->
+      <div class="row" style="display: flex; align-items: center; margin: 0;">
+        <div class="col" style="display: inline">
+          <div class="card">
+            <img class="card-img-top" src="./static/images/icon.png" alt="Mufeng Liu">
+            <div class="card-body">
+              <h5 class="card-title">Mufeng Liu</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col" style="display: inline">
+          <div class="card">
+            <img class="card-img-top" src="./static/images/icon.png" alt="Mufeng Liu">
+            <div class="card-body">
+              <h5 class="card-title">Jamie Tsai</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col" style="display: inline">
+          <div class="card">
+            <img class="card-img-top" src="./static/images/icon.png" alt="Mufeng Liu">
+            <div class="card-body">
+              <h5 class="card-title">Jeffrey Zhang</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col" style="display: inline">
+          <div class="card">
+            <img class="card-img-top" src="./static/images/icon.png" alt="Mufeng Liu">
+            <div class="card-body">
+              <h5 class="card-title">Razi Syed</h5>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col" style="display: inline">
-        <div class="card">
-          <img class="card-img-top" src="./static/images/icon.png" alt="Mufeng Liu">
-          <div class="card-body">
-            <h5 class="card-title">Jamie Tsai</h5>
-          </div>
-        </div>
-      </div>
-      <div class="col" style="display: inline">
-        <div class="card">
-          <img class="card-img-top" src="./static/images/icon.png" alt="Mufeng Liu">
-          <div class="card-body">
-            <h5 class="card-title">Jeffrey Zhang</h5>
-          </div>
-        </div>
-      </div>
-      <div class="col" style="display: inline">
-        <div class="card">
-          <img class="card-img-top" src="./static/images/icon.png" alt="Mufeng Liu">
-          <div class="card-body">
-            <h5 class="card-title">Razi Syed</h5>
-          </div>
-        </div>
-      </div>
+      
+
     </div>
 
+    <a href="#home"><button class="backtotop">
+      Back to Top
+    </button></a>
   </section>
   <!-- End Our Team -->
 

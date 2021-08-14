@@ -39,7 +39,7 @@
         <ul class="nav navbar-nav ml-auto">
           <li class="nav-item"><a class="nav-link" href="http://localhost:5000/#about">About</a></li>
           <li class="nav-item"><a class="nav-link" href="http://localhost:5000/#team">Our Team</a></li>
-          <li class="nav-item"><a class="nav-link active" href="http://localhost:5000/application">Try It Out!</a></li>
+          <li class="nav-item"><a class="nav-link active" href="http://localhost:5000/preferences">Try It Out!</a></li>
         </ul> 
       </div>
 
@@ -56,7 +56,8 @@
         <i>
           <h4 style="text-align: left">We're here to help!</h4>
         </i>
-        <form method="GET">
+
+        <!-- <form method="GET">
           <br><br>
           <label for="sel1">Province</label>
           <select class="form-control" id="sel1" name="provinceSelect">
@@ -79,7 +80,7 @@
           <label for="sel2">Facility Type</label>
           <select class="form-control" id="sel2" name="typeSelect">
             <option value="Select Option" selected disabled>Select Option</option>
-            <option value="ambulatory">Ambulatory health care services (including clinics)</option>
+            <option value="ambulatory">Ambulatory care (including clinics)</option>
             <option value="hospitals">Hospitals</option>
             <option value="nursing">Nursing and residential care facilities</option>
           </select>
@@ -88,12 +89,14 @@
           <input type="number" class="form-control" id="inputMax" min="1" max="24" name="waitTime">
           <br><br>
           <button type="submit" class="btn btn-outline-success">Filter</button>
-        </form>
+        </form> -->
+        {% block content %}{% endblock %}
         
       </div>
 
       <div class="col-sm-8" id="mainContainer">
 
+        {% if hasData %}
         <table class="table table-hover">
           <tbody>
             <tr>
@@ -151,13 +154,18 @@
             {% endfor %}
           </tbody>
         </table>
+        {% else %}
+        
+        {% endif %}
+
+        
 
       </div>
     </div>
   </div>
 
   <!-- jQuery library -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://ajax.gooeapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
   <!-- Popper JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>

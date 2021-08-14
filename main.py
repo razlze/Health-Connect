@@ -1,11 +1,14 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, flash, redirect, request
 import numpy as np
 import pandas as pd
 import geocoder
 from geopy import distance
 import random 
+from forms import PreferencesForm
 
 app = Flask(__name__)
+SECRET_KEY = OS.GETENV('SECRET_KEY')
+app.config['SECRET_KEY'] = SECRET_KEY
 
 def total_time(row):
   me = geocoder.ip('me')
@@ -20,13 +23,12 @@ def total_time(row):
   return totalTime
 
 def wait_time(row):
-  return int(random.randint(10,300))
+  return int(random.randint(1,8))
 
 @app.route('/') 
 @app.route('/main')
 def main():
-  path = ["stuff", "more", "ahfjs"]
-  return render_template('home.html', path=path)
+  return render_template('home.html')
 
 @app.route('/application')
 def application(): 
@@ -61,4 +63,49 @@ def application():
 
   print("filtered.values.toList()", filtered.values.tolist())   
 
-  return render_template('application.html', column_names=["Facility Type", "Facility Name", "Postal Code", "Wait Time", "Total Time"], row_data=list(filtered.values.tolist()))
+  return render_template("application.html", column_names=["Facility Type", "Facility Name", "Postal Code", "Wait Time", "Total Time"], row_data=list(filtered.values.tolist()))
+
+@app.route("/preferences", methods=['GET', 'POST'])
+def preferences():
+  form = PreferencesForm()
+  if form.validate_on_submit():
+    result = request.form
+    print("result", result)
+    province = result["province"]
+    facility = result["facility"]
+    waitTime = result["wait_time"]
+    print("Province", province)
+
+    df = pd.read_csv('blah.csv') 
+
+    # Get all hospitals from the requested province, facility type, wait time 
+    filtered = df[df['province'].str.match(province)] 
+    print("haha 1", filtered)
+
+    filtered = filtered[filtered['facility_type'].str.match(facility)] 
+    print("haha 2", filtered)
+    # Get all hospitals from the requested wait time 
+    filtered["wait_time"] = filtered.apply(wait_time, axis=1)
+
+    print("haha 3", filtered)
+    # Get rid of null longitudes and latitudes
+    filtered = filtered[(filtered['longitude'] != "null")]
+    filtered = filtered[(filtered['latitude'] != "null")]
+    filtered = filtered[filtered['wait_time'] <= int(waitTime)] 
+    # Filling in wait time (not random we promise) 
+    print("wait time before", filtered) 
+    # Get all hostpitals with wait times lower than the requested one  
+    
+    
+    print("wait time after", filtered)
+    
+    # if len(filtered.columns) == 0:
+    #   print("no data")
+    #   return render_template("application.html")
+    # else: 
+    #   # Filling in total time 
+    #   filtered["total_time"] = filtered.apply(total_time, axis=1)
+    print("we're here")
+    return render_template("application.html", column_names=["Facility Type", "Facility Name", "Postal Code", "Wait Time", "Total Time"], row_data=list(filtered.values.tolist()))
+    
+  return render_template('preferences.html', title='Preferences', form=form)

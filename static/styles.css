@@ -7,6 +7,7 @@
 html, body {
   font-family:'Poppins', sans-serif;
   scroll-behavior: smooth;
+  box-sizing: border-box;
   height: 100%;
   /* overflow-x: hidden; */
 }
@@ -21,16 +22,33 @@ section {
   max-width: 100%;
 }
 
-#scroll-down-button {
+.scroll-down-button {
   width: 40px; 
-  height: 40px; 
-  border: none; 
-  display: inline-block;
+  height: 40px;  
+  border-radius: 40px;
+  color: black;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.4s;
+  text-decoration: none;
 }
 
-#scroll-down-button:hover {
-  transition: 0.2s;
-  transform: scale(1.1);
+.scroll-down-button i {
+  font-size: 30px;
+  background-color:rgba(255, 255, 255, 0);
+  text-decoration: none;
+}
+
+.scroll-down-button:hover {
+  background-color: #17B890;
+  color: white;
+  text-decoration: none;
+}
+
+.scroll-down-button:hover i {
+  background-color:rgba(255, 255, 255, 0);
+  text-decoration: none;
 }
 
 /* Button */
@@ -103,7 +121,7 @@ section {
   margin-bottom: 40px;
   margin-left: 50px;
   margin-right: 50px;
-  width: 13rem;
+  /* width: 13rem; */
 }
 
 h1, h4 {
@@ -118,6 +136,132 @@ h3 {
 /* About section */
 
 #about-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
   background-color: #E0EEE4;
-  min-height: 70vh;
+}
+
+#about, #team {
+  position: relative;
+}
+
+#teamdiv {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+}
+
+.backtotop {
+  width: 200px;
+  border: none;
+  padding: 12px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: auto;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  background-color: white; 
+  color: rgb(47, 50, 56);; 
+  border: 2px solid rgb(47, 50, 56);;
+  border-radius: 40px;
+
+  position: absolute;
+  left: 50%;
+  bottom: 10%;
+  transform: translateX(-50%);
+}
+
+.backtotop:hover {
+  background-color: rgb(47, 50, 56);
+  color: white;
+}
+
+.backtotop:active {
+  border: 2px solid rgb(47, 50, 56);
+  background-color: rgb(47, 50, 56);
+  box-shadow: 0 2px rgb(182, 182, 182);
+  transform: translate(-50%, -10px);
+}
+
+.background {
+  /* background: linear-gradient(132deg, #FC415A, #591BC5, #212335); */
+  background-size: 400% 400%;
+  animation: Gradient 15s ease infinite;
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  padding:0;
+  margin:0px;
+  z-index: -10;
+  position: absolute;
+}
+.cube {
+  position: absolute;
+  top: 80vh;
+  left: 45vw;
+  width: 10px;
+  height: 10px;
+  border: solid 1px #17B890;
+  transform-origin: top left;
+  transform: scale(0) rotate(0deg) translate(-50%, -50%);
+  animation: cube 12s ease-in forwards infinite;
+}
+.cube:nth-child(2n) {
+  border-color: #fff ;
+}
+.cube:nth-child(2) {
+  animation-delay: 2s;
+  left: 25vw;
+  top: 40vh;
+}
+.cube:nth-child(3) {
+  animation-delay: 4s;
+  left: 75vw;
+  top: 50vh;
+}
+.cube:nth-child(4) {
+  animation-delay: 6s;
+  left: 90vw;
+  top: 10vh;
+}
+.cube:nth-child(5) {
+  animation-delay: 8s;
+  left: 10vw;
+  top: 85vh;
+}
+.cube:nth-child(6) {
+  animation-delay: 10s;
+  left: 50vw;
+  top: 10vh;
+}
+
+@keyframes Gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes cube {
+  from {
+    transform: scale(0) rotate(0deg) translate(-50%, -50%);
+    opacity: 1;
+  }
+  to {
+    transform: scale(20) rotate(960deg) translate(-50%, -50%);
+    opacity: 0;
+    
+  }
 }
