@@ -1,7 +1,7 @@
 # Health Connect 
 
 A web app created for SETHacks() 2021!
-View our submission [here](https://github.com/razlze/Health-Connect)
+View our submission [here](https://devpost.com/software/health-connect-037wli)
 
 ## Description
 
