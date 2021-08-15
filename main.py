@@ -62,7 +62,7 @@ def application():
 
     # Filter for hospitals from the requested province and facility type
     df = df[df['province'].str.match(province)] 
-    df = df[df['odhf_facility_type'].str.match(facility)] 
+    if not facility == "All": df = df[df['odhf_facility_type'].str.match(facility)] 
 
     # Get rid of null longitudes and latitudes
     df = df.dropna(subset=['longitude', 'latitude'])
@@ -82,7 +82,6 @@ def application():
     
     else: 
       # Delete columns
-      toDelete = []
       del df["index"]
       del df["source_facility_type"]
       del df["provider"]
