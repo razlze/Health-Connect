@@ -31,7 +31,7 @@ Health Connect’s goal is to make health care as easily accessible as possible,
 
 1. Clone the Health Connect repository
 2. Navigate to the project directory on the command line
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cd .../Health-Care-Finder`
+  &nbsp;&nbsp;`cd .../Health-Care-Finder`
 3. Set the environment variable FLASK_APP to main.py<br>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mac/Linux:&nbsp;&nbsp;
   `export FLASK_APP=main.py `<br>
