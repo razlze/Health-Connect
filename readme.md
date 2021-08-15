@@ -1,4 +1,5 @@
 # Health Connect 
+> Medical Access Made Easy!
 
 A web app created for SETHacks() 2021!
 View our submission [here](https://devpost.com/software/health-connect-037wli)
@@ -10,7 +11,7 @@ Health Connect’s goal is to make health care as easily accessible as possible,
 
 ## Instructions for Use
 
-1. Load the application and click "Try It Out!" in the top right corner
+1. Load the application and click "Try It Out!" in the navigation bar or the green button with the same name on Homepage
 2. Enter your preferences! Choose a province, health care facility type, and the longest time you're willing to wait to see a healthcare professional 
 3. Browse through your nearby options
 4. Once you find a hospital that suits your needs, click on the facility name to open a Google Maps link to help you navigate to the location!
