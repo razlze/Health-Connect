@@ -54,6 +54,10 @@ Health Connect’s goal is to make health care as easily accessible as possible,
 
 The next steps for Health Connect include developing a Hospital-end wait time calculator to provide live wait time updates. We plan to first create a basic wait time calculator that generates an estimated time based on the number of patients and the number of staff members working in the facility at that time. We than want to incorporate AI into our work to evaluate the complexity of entered patient symptoms and generate a highly personalized wait time. This way, one that comes with a small ankle injury may be assigned a shorter wait time than someone who reports chest pain. With this system in place, Health Connect will be able to produce more accurate estimates for users.
 
+## Sources
+
+Dataset used was taken from Statistics Canada's [Open Database of Healthcare Facilities](https://www.statcan.gc.ca/eng/lode/databases/odhf)
+
 ## Contributors 
 * [Mufeng Liu](https://github.com/mufengl)
 * [Jamie Tsai](https://github.com/JamieTsai1024)
