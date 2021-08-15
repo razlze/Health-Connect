@@ -8,7 +8,7 @@ import random
 from forms import PreferencesForm
 
 global csv_name
-csv_name = 'med2.csv'
+csv_name = 'med.csv'
 
 SECRET_KEY = os.urandom(32)
 
@@ -43,9 +43,9 @@ def main():
 @app.route('/application', methods=['GET', 'POST'])
 def application(): 
 
-  # global df
   global csv_name
 
+  # Get the form for the form's data
   form = PreferencesForm()
 
   # button press
@@ -77,13 +77,12 @@ def application():
 
     # Check if the dataframe is empty 
     if len(df) == 0:    
-
       # Return the template 
       return render_template("application.html", hasNoData=True, form=form, column_names=["Facility Type", "Facility Name", "Province", "Wait Time", "Drive Time", "Total Time"], row_data=list())
     
     else: 
-
       # Delete columns
+      toDelete = []
       del df["index"]
       del df["source_facility_type"]
       del df["provider"]
@@ -111,7 +110,6 @@ def application():
   df = df.dropna(subset=['longitude', 'latitude'])
 
   # Fill out wait time and total time 
-  # df["wait_time"] = df.apply(wait_time, axis=1)
   df["drive_time"] = df.apply(drive_time, axis=1)
   df["total_time"] = df.apply(total_time, axis=1)
 

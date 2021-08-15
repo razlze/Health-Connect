@@ -2,6 +2,7 @@
 
 :root {
   --green: #17B890;
+  --grey: #363537;
 }
 
 html, body {
@@ -95,6 +96,11 @@ section {
   background-color: rgb(9, 121, 93);
   box-shadow: 0 2px rgb(182, 182, 182);
   transform: translateY(2px);
+  outline: none;
+}
+
+.button:focus {
+  outline: none;
 }
 
 /* Links */
