@@ -5,8 +5,10 @@
   --grey: #363537;
 }
 
+/* HTML elements */
+
 html, body {
-  font-family:'Poppins', sans-serif;
+  font-family: 'Poppins', sans-serif;
   scroll-behavior: smooth;
   height: 100%;
 }
@@ -21,11 +23,25 @@ section {
   max-width: 100%;
 }
 
+h1, h4 {
+  text-align: center;
+}
+
+h3 {
+  text-align: left;
+}
+
+h5 {
+  text-align: center;
+}
+
+/* Scroll down button */
+
 .scroll-down-button {
   width: 40px; 
   height: 40px;  
   border-radius: 40px;
-  color: black;
+  color: var(--grey);
   align-items: center;
   justify-content: center;
   transition: 0.4s;
@@ -47,6 +63,8 @@ section {
 .scroll-down-button:active {
   transform: translateY(15px);
 }
+
+/* Table */
 
 .table-overflow {
   height: 500px !important;
@@ -103,7 +121,7 @@ section {
   outline: none;
 }
 
-/* Links */
+/* Navbar Links */
 
 .navbar-brand {
   color:rgba(255, 255, 255, 0.808);
@@ -142,20 +160,8 @@ section {
   margin-bottom: 40px;
   margin-left: 50px;
   margin-right: 50px;
-  /* width: 13rem; */
 }
 
-h1, h4 {
-  text-align: center;
-}
-
-h3 {
-  text-align: left;
-}
-
-h5 {
-  text-align: center;
-}
 /* About section */
 
 #about-bg {
@@ -215,7 +221,6 @@ h5 {
 }
 
 .background {
-  /* background: linear-gradient(132deg, #FC415A, #591BC5, #212335); */
   background-size: 400% 400%;
   animation: Gradient 15s ease infinite;
   position: relative;
@@ -227,6 +232,7 @@ h5 {
   z-index: -10;
   position: absolute;
 }
+
 .cube {
   position: absolute;
   left: 30vw;
@@ -238,29 +244,31 @@ h5 {
   transform: scale(0) rotate(0deg) translate(-50%, -50%);
   animation: cube 12s ease-out forwards infinite;
 }
+
 /* .cube:nth-child(2n) {
   border-color: #fff ;
 } */
+
 .cube:nth-child(2) {
   animation-delay: 2s;
   left: 22vw;
- 
 }
+
 .cube:nth-child(3) {
   animation-delay: 4s;
   left: 75vw;
- 
 }
+
 .cube:nth-child(4) {
   animation-delay: 6s;
   left: 90vw;
-  
 }
+
 .cube:nth-child(5) {
   animation-delay: 8s;
   left: 7vw;
-  
 }
+
 .cube:nth-child(6) {
   animation-delay: 10s;
   left: 65vw;
@@ -277,6 +285,7 @@ h5 {
     background-position: 0% 50%;
   }
 }
+
 @keyframes cube {
   from {
     transform: scale(0) rotate(0deg) translate(-50%, -50%);
@@ -293,4 +302,30 @@ h5 {
 
 #mainContainer {
   padding-left: 40px;
+}
+
+/* Forms */
+
+.dropdown {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: '';
+  border-top-right-radius: 0.3rem !important; 
+  border-bottom-right-radius: 0.3rem !important;
+  cursor: pointer;
+}
+
+.smaller-font {
+  font-size: 14px;
+}
+
+.input-group-btn {
+  color: var(--grey);
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  pointer-events: none;
 }

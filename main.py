@@ -78,7 +78,7 @@ def application():
     # Check if the dataframe is empty 
     if len(df) == 0:    
       # Return the template 
-      return render_template("application.html", hasNoData=True, form=form, column_names=["Facility Type", "Facility Name", "Province", "Wait Time", "Drive Time", "Total Time"], row_data=list())
+      return render_template("application.html", hasNoData=True, form=form, column_names=["Facility Type", "Facility Name", "Wait Time", "Drive Time", "Total Time"], row_data=list())
     
     else: 
       # Delete columns
@@ -100,7 +100,7 @@ def application():
       df["province"] = df.apply(province_normalize, axis=1)
 
       # Return the template
-      return render_template("application.html", hasNoData=False, form=form, column_names=["Facility Type", "Facility Name", "Province", "Wait Time", "Drive Time", "Total Time"], row_data=list(df.values.tolist()))
+      return render_template("application.html", hasNoData=False, form=form, column_names=["Facility Type", "Facility Name", "Wait Time", "Drive Time", "Total Time"], row_data=list(df.values.tolist()))
   
   # Get CSV
   df = pd.read_csv(csv_name) 
@@ -134,4 +134,4 @@ def application():
   df=df.sort_values(by=["total_time"]) 
 
   # Return the template 
-  return render_template('application.html', hasNoData=False, form=form, column_names=["Facility Type", "Facility Name", "Province", "Wait Time", "Drive Time", "Total Time"], row_data=list(df.values.tolist()))
+  return render_template('application.html', hasNoData=False, form=form, column_names=["Facility Type", "Facility Name", "Wait Time", "Drive Time", "Total Time"], row_data=list(df.values.tolist()))

@@ -59,46 +59,58 @@
         <i>
           <h4 style="text-align: left">We're here to help!</h4>
         </i>
-        <br>
+
+        <br><br>
+
+        <!-- Form -->
         <div class="content-section">
           <form method="POST" action="">
-            {{ form.hidden_tag() }}
-            <fieldset class="form-group">
 
+            {{ form.hidden_tag() }}
+
+            <fieldset class="form-group">
               <!-- Province input-->
               <div class="form-group">
                 {{ form.province.label(class="form-control-label") }}
-                {{ form.province(class="form-control form-control-lg") }}
+                <div class="input-group">
+                  {{ form.province(class="form-control form-control-lg dropdown smaller-font") }}
+                  <span class="input-group-btn"><i class='fas fa-angle-down '></i></span>
+                </div>
               </div>
               <!-- Facilities input -->
               <div class="form-group">
                 {{ form.facility.label(class="form-control-label") }}
                 <i class='fas fa-info-circle' data-toggle="tooltip" title="Type of healthcare" style='font-size:18px; color:#9e9e9e; margin-left: 10px;'></i>
-                {{ form.facility(class="form-control form-control-lg") }}
+                <div class="input-group">
+                  {{ form.facility(class="form-control form-control-lg smaller-font dropdown") }}
+                  <span class="input-group-btn"><i class='fas fa-angle-down '></i></span>
+                </div>  
               </div>
               <!-- Wait Time input -->
               <div class="form-group">
                 {{ form.wait_time.label(class="form-control-label") }}
                 <i class='fas fa-info-circle' data-toggle="tooltip" title="Total time before seeing a health professional" style='font-size:18px; color:#9e9e9e; margin-left: 10px;'></i>
-                {{ form.wait_time(class="form-control form-control-lg") }}
+                {{ form.wait_time(class="form-control form-control-lg smaller-font") }}
               </div>
             </fieldset>
+
             <!-- Submit -->
             <div class="form-group">
               {{ form.submit(class="btn btn-outline-info") }}
             </div>
+
           </form>
         </div>
-
       </div>
 
       <div class="col-sm-9" id="mainContainer">
 
         {% if hasNoData %}
         <div class="alert alert-danger text-center" role="alert">
-          No Results Fit Your Criteria
+          No results fit your criteria. Try broadening your criteria! 
         </div>
         {% endif %}
+
         <div class="table-overflow">
           <table class="table table-hover tablestrat">
 
@@ -113,8 +125,8 @@
             <tbody>
               
               {% for facility_name, facility_type, location, longitude, latitude, wait_time, drive_time, total_time in row_data %}
-
               <tr>
+
                 <!-- Icon -->
                 <td>
                   {% if facility_type|string() == 'Ambulatory health care services' %}
@@ -125,59 +137,42 @@
                   <img data-toggle="tooltip" title="Hospital" src="{{ url_for('static', filename='images/hospital.png') }}" width="60px"></img>
                   {% endif %}
                 </td>
+
                 <!-- Facility Name -->
                 <td>
-                  {{ facility_name }}
-                </td>
-                <!-- Location -->
-
-                <td>
-                  <a href="{{'https://www.google.com/maps/search/?api=1&query=' +  longitude|string()  + ',' + latitude|string() }}" target="_blank">{{ location }}</a>
+                  <a href="{{'https://www.google.com/maps/search/?api=1&query=' +  longitude|string()  + ',' + latitude|string() }}" target="_blank">
+                    {{ facility_name }}
+                  </a>
                 </td>
 
                 <!-- Wait Time -->
                 {% if not wait_time > 60 %} 
-                <td>
-                  {{ wait_time }} Minutes
-                </td>
-              
+                <td>{{ wait_time }} Minutes</td>
                 {% else %}
-                <td>
-                  {{ (wait_time//60)|int }} Hours and {{ (wait_time-((wait_time//60)*60))|round|int }} Minutes
-                </td>
+                <td>{{ (wait_time//60)|int }} Hours and {{ (wait_time-((wait_time//60)*60))|round|int }} Minutes</td>
                 {% endif %}
 
                 <!-- Drive Time -->
                 {% if not drive_time > 60 %}
-                <td>
-                  {{ drive_time }} Minutes
-                </td>
+                <td>{{ drive_time }} Minutes</td>
                 
                 {% else %}
-                <td>
-                  {{ (drive_time//60)|int }} Hours and {{ (drive_time-((drive_time//60)*60))|round|int }} Minutes
-                </td>
+                <td>{{ (drive_time//60)|int }} Hours and {{ (drive_time-((drive_time//60)*60))|round|int }} Minutes</td>
                 {% endif %}
 
                 <!-- Total Time -->
                 {% if not total_time > 60 %}
-                <td>
-                  {{ total_time }} Minutes
-                </td>
-                
+                <td>{{ total_time }} Minutes</td>
                 {% else %}
-                <td>
-                  {{ (total_time//60)|int }} Hours and {{ (total_time-((total_time//60)*60))|round|int }} Minutes
-                </td>
+                <td>{{ (total_time//60)|int }} Hours and {{ (total_time-((total_time//60)*60))|round|int }} Minutes</td>
                 {% endif %}
 
               </tr>
-
               {% endfor %}
+
             </tbody>
           </table>
         </div>
-
 
       </div>
     </div>
@@ -197,7 +192,9 @@
 </html>
 
 <script>
+
   $(document).ready(function () {
     $('[data-toggle="tooltip"]').tooltip();
   });
+
 </script>
