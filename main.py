@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 import geocoder
 from geopy import distance
-import random 
+import random
 from forms import PreferencesForm
 
 # Declaring globals
@@ -17,7 +17,6 @@ me = geocoder.ip('me')
 SECRET_KEY = os.urandom(32)
 
 # Defining Flask App
-
 app = Flask(__name__)
 app.config['SECRET_KEY'] = SECRET_KEY
 
