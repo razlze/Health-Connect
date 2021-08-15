@@ -7,18 +7,28 @@ from geopy import distance
 import random 
 from forms import PreferencesForm
 
+# Declaring globals
 global csv_name
+global me
 csv_name = 'med.csv'
+me = geocoder.ip('me')
 
+# Generating SECRET_KEY
 SECRET_KEY = os.urandom(32)
+
+# Defining Flask App
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = SECRET_KEY
 
+######################
+#  Helper functions  #
+######################
+
 def drive_time(row):
-  # me = geocoder.ip('me')
-  # my_coords = (me.latlng[0], me.latlng[1])
-  my_coords = (45.420771, -75.698210)
+  global me 
+  my_coords = (me.latlng[0],me.latlng[1])
+  # my_coords = (45, -75.698210) # Test coords
   destination_coords = (row["latitude"], row["longitude"]) 
   driveTime = distance.distance(my_coords, destination_coords).km
   return int(driveTime)
@@ -34,6 +44,10 @@ def facility_normalize(row):
 
 def province_normalize(row):
   return row["province"].upper()
+
+###########
+#  Flask  #
+###########
 
 @app.route('/') 
 @app.route('/main')
